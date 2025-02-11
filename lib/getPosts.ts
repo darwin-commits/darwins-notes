@@ -29,7 +29,11 @@ export function getAllPosts() {
 
   return files.map((filePath) => {
     const fileContent = fs.readFileSync(filePath, "utf8");
-    const { data } = matter(fileContent);
+    const { data, content } = matter(fileContent);
+
+    // Calculate reading time (assuming average reading speed of 200 words per minute)
+    const words = content.trim().split(/\s+/).length;
+    const readTime = Math.ceil(words / 200) + " min read";
 
     // Extract year, month, day, and slug from file path
     const relativePath = path.relative(contentDir, filePath);
@@ -43,6 +47,8 @@ export function getAllPosts() {
       title: data.title,
       date: data.date,
       description: data.description,
+      tag: data.tag,
+      readTime,
     };
   });
 }

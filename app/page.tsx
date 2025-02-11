@@ -1,5 +1,5 @@
 'use client';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const categories = [
@@ -37,6 +37,23 @@ const featuredTopics = [
 
 export default function Home() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [realPosts, setRealPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch('/api/posts');
+        const posts = await response.json();
+        setRealPosts(posts);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  const allTopics = [...realPosts, ...featuredTopics];
 
   const toggleCategory = (category: string) => {
     setSelectedCategories(prev => 
@@ -47,8 +64,8 @@ export default function Home() {
   };
 
   const filteredTopics = selectedCategories.length > 0
-    ? featuredTopics.filter(topic => selectedCategories.includes(topic.category))
-    : featuredTopics;
+    ? allTopics.filter(topic => selectedCategories.includes(topic.category))
+    : allTopics;
 
   return (
     // Welcome Message Section
