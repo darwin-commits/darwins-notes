@@ -2,6 +2,7 @@
 title: Hello, World!
 date: "2025-02-04"
 description: Welcome to my digital learning journal, where I'll share occasional insights into computer science, technology, and intellectual pursuits that spark my curiosity.
+tag: Experiment
 ---
 
 Greetings! Welcome to my personal website's inaugural blog post. This digital platform represents a window into my ongoing learning journey and interests.
