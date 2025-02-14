@@ -42,7 +42,7 @@ export default async function BlogPost({ params }: { params: Promise<Params> }) 
       <div className="container mx-auto px-4 py-10">
         <div className="max-w-2xl mx-auto">
           <Link href="/blog" className="inline-block mb-8 text-gray-600 dark:text-gray-400 hover:text-primary transition-colors">
-          ← back
+            ← back
           </Link>
           <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">{post.data.title}</h1>
           <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">
